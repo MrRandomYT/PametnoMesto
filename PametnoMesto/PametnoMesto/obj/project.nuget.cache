@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wIZLinlxcq4=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\MrRandomYT\\Documents\\GitHub\\PametnoMesto\\PametnoMesto\\PametnoMesto\\PametnoMesto.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\MrRandomYT\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1.nupkg.sha512"
+  ],
+  "logs": []
+}
