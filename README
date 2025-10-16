@@ -1,0 +1,3 @@
+CD into the working folder
+
+docker build -t demo:latest .
