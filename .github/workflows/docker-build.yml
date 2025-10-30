@@ -31,6 +31,12 @@ jobs:
           push: true
           tags: mrrandomyt/pametno-mesto:latest
 
+      - name: Restore .NET packages
+        run: dotnet restore ./PametnoMesto/PametnoMesto.csproj
+
+      - name: Build .NET project
+        run: dotnet build ./PametnoMesto/PametnoMesto.csproj --configuration Release
+
       - name: Publish
         run: dotnet publish ./PametnoMesto/PametnoMesto.csproj --configuration Release --no-build --output "${{ github.workspace }}/publish"
 
