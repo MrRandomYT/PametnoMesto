@@ -27,7 +27,7 @@ jobs:
         uses: dorny/test-reporter@v1
         with:
           name: 'Test Results'
-          path: ${{ github.workspace }}/TestResults/*.trx
+          path: ${{ github.workspace }}/../TestResults/*.trx
           reporter: 'dotnet-trx'
 
       - name: Publish .NET project
