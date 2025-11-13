@@ -26,7 +26,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Run tests
-        run: dotnet test --no-restore --logger:trx
+        run: dotnet test --no-restore --logger:trx --results-directory ./TestResults
 
       - name: Save test results as artifact
         uses: dorny/test-reporter@v1
