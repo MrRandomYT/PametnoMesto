@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PametnoMesto.Test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+231c31d744dffdcd4097099539e3bf983d15243a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a25e8c766011c4cdb3151b8b1a3f193ae79ddb6a")]
 [assembly: System.Reflection.AssemblyProductAttribute("PametnoMesto.Test")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PametnoMesto.Test")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
