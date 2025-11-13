@@ -14,11 +14,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0'
+
       - name: Restore .NET packages
-        run: dotnet restore ./PametnoMesto/PametnoMesto.csproj
+        run: dotnet restore
 
       - name: Build .NET project
-        run: dotnet build ./PametnoMesto/PametnoMesto.csproj --configuration Release
+        run: dotnet build --configuration Release
 
       - name: Run tests
         run: dotnet test --no-restore --logger:trx
@@ -31,7 +36,7 @@ jobs:
           reporter: 'dotnet-trx'
 
       - name: Publish .NET project
-        run: dotnet publish ./PametnoMesto/PametnoMesto.csproj --configuration Release --no-build --output "${{ github.workspace }}/publish"
+        run: dotnet publish --configuration Release --no-build --output "${{ github.workspace }}/publish"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
