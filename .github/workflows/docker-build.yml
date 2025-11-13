@@ -14,6 +14,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Restore .NET packages
+        run: dotnet restore ./PametnoMesto/PametnoMesto.csproj
+
+      - name: Build .NET project
+        run: dotnet build ./PametnoMesto/PametnoMesto.csproj --configuration Release
+
+      - name: Test
+        run: dotnet test --no-restore --logger:trx
+        
+      - name: Save test results as artifact
+        uses: dorny/test-reporter@v1
+        with:
+          name: 'Test results'
+          path: ${{ github.workspace }}/Tests/TestResults/*.trx
+          reporter: 'dotnet-trx'
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
         
@@ -30,12 +46,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: mrrandomyt/pametno-mesto:latest
-
-      - name: Restore .NET packages
-        run: dotnet restore ./PametnoMesto/PametnoMesto.csproj
-
-      - name: Build .NET project
-        run: dotnet build ./PametnoMesto/PametnoMesto.csproj --configuration Release
 
       - name: Publish
         run: dotnet publish ./PametnoMesto/PametnoMesto.csproj --configuration Release --no-build --output "${{ github.workspace }}/publish"
