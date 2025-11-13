@@ -21,13 +21,13 @@ jobs:
         run: dotnet build ./PametnoMesto/PametnoMesto.csproj --configuration Release
 
       - name: Run tests
-        run: dotnet test ./PametnoMesto/PametnoMesto.csproj --no-restore --logger:trx
+        run: dotnet test --no-restore --logger:trx
 
       - name: Save test results as artifact
         uses: dorny/test-reporter@v1
         with:
           name: 'Test Results'
-          path: ${{ github.workspace }}/../TestResults/*.trx
+          path: ${{ github.workspace }}/TestResults/*.trx
           reporter: 'dotnet-trx'
 
       - name: Publish .NET project
