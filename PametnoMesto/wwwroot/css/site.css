@@ -1,22 +1,99 @@
+:root {
+    /* Primary Brand Colors */
+    --green-primary: #00C853;
+    --cyan-hover: #00E5FF;
+
+    /* Backgrounds */
+    --bg-dark: #121212;
+    --bg-card: #1E1E1E;
+
+    /* Text Colors */
+    --text-primary: #E0E0E0;
+    --text-secondary: #B0B0B0;
+
+    /* Status Colors */
+    --error: #FF5252;
+    --success: #00C853;
+
+    /* UI Elements */
+    --button-radius: 8px;
+    --transition-speed: 0.25s;
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+      font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    background-color: var(--bg-dark); 
+    color: var(--text-primary);
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1b1b1b !important;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+.navbar-brand,
+.nav-link {
+    color: var(--text-primary) !important;
+}
+
+.nav-link:hover {
+    color: var(--cyan-hover) !important;
+}
+
+.navbar-brand:hover {
+    color: var(--green-primary) !important;
+}
+
+.navbar-toggler {
+    border-color: var(--text-primary);
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/* Footer */
+footer {
+    background-color: #1b1b1b;
+    color: var(--text-secondary);
+    border-color: #333;
+}
+
+footer a {
+    color: var(--cyan-hover);
+}
+
+footer a:hover {
+    color: var(--green-primary);
+}
+
+/* Links inside body */
+a {
+    color: var(--green-primary);
+}
+
+a:hover {
+    color: var(--cyan-hover);
 }
