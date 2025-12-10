@@ -16,41 +16,52 @@ public class UnitTest1
     public void TestDuplicateAdd()
     {
         DataHandler dataHandler = new DataHandler();
-        Vehicle vehicle = new Vehicle("Test1", "Pink");
-        bool t1 = dataHandler.AddVehicle(vehicle) != -1;
-        bool t2 = dataHandler.AddVehicle(vehicle) == -1;
-        Assert.IsTrue(t1 && t2);
+    
+        int id1 = dataHandler.AddVehicle("Test1", "Pink", VehicleType.Car);
+        int id2 = dataHandler.AddVehicle("Test1", "Pink", VehicleType.Car); // duplicate name
+    
+        // They should have different IDs
+        Assert.AreNotEqual(id1, id2);
+
+        // Optionally: check that both vehicles exist
+        Assert.AreEqual(2, dataHandler.GetVehicles().Count);
     }
+
 
     [TestMethod]
     public void TestDoubleRemove()
     {
         DataHandler dataHandler = new DataHandler();
-        Vehicle vehicle = new Vehicle("Test1", "Pink");
-        int index = dataHandler.AddVehicle(vehicle);
-        bool t1 = dataHandler.RemoveVehicle(index);
-        bool t2 = !dataHandler.RemoveVehicle(index);
+        int id = dataHandler.AddVehicle("Test1", "Pink", VehicleType.Car);
+
+        bool t1 = dataHandler.RemoveVehicle(id);
+        bool t2 = !dataHandler.RemoveVehicle(id);
+
         Assert.IsTrue(t1 && t2);
     }
+
 
     [TestMethod]
     public void TestNormalUse()
     {
         DataHandler dataHandler = new DataHandler();
-        Vehicle vehicle1 = new Vehicle("Test1", "Pink");
-        Vehicle vehicle2 = new Vehicle("Test2", "Pink");
-        Vehicle vehicle3 = new Vehicle("Test3", "Pink");
-        Vehicle vehicle4 = new Vehicle("Test4", "Pink");
-        
-        dataHandler.AddVehicle(vehicle1);
-        dataHandler.AddVehicle(vehicle2);
-        dataHandler.AddVehicle(vehicle3);
-        dataHandler.AddVehicle(vehicle4);
-        
-        dataHandler.RemoveVehicle(2);
-        
-        Assert.IsTrue(dataHandler.GetVehicle(2) == vehicle4);
+    
+        int id1 = dataHandler.AddVehicle("Test1", "Pink", VehicleType.Car);
+        int id2 = dataHandler.AddVehicle("Test2", "Pink", VehicleType.Car);
+        int id3 = dataHandler.AddVehicle("Test3", "Pink", VehicleType.Car);
+        int id4 = dataHandler.AddVehicle("Test4", "Pink", VehicleType.Car);
+
+        dataHandler.RemoveVehicle(id3);
+
+        // id4 should still exist
+        var vehicle4 = dataHandler.GetVehicle(id4);
+        Assert.IsNotNull(vehicle4);
+        Assert.AreEqual("Test4", vehicle4.Name);
+
+        // id3 should be gone
+        Assert.IsNull(dataHandler.GetVehicle(id3));
     }
+
 
     #endregion
 }

@@ -1,0 +1,29 @@
+@page
+@model AddVehicleModel
+@{
+    ViewData["Title"] = "Add Vehicle";
+}
+
+<div class="text-center">
+    <h1>Add a Vehicle</h1>
+</div>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" id="Name" name="Name" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="Color" class="form-label">Color</label>
+        <input type="text" id="Color" name="Color" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="Type" class="form-label">Type</label>
+        <select id="Type" name="Type" class="form-select">
+            <option value="Car">Car</option>
+            <option value="Scooter">Scooter</option>
+            <option value="Bike">Bike</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Add Vehicle</button>
+</form>

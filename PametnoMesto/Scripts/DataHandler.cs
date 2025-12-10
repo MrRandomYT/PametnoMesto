@@ -2,26 +2,24 @@ namespace PametnoMesto.Scripts;
 
 public class DataHandler
 {
-    List<Vehicle> _vehicles = new();
+    private readonly List<Vehicle> _vehicles = new();
+    private int _nextId = 1;
 
-    public int AddVehicle(Vehicle vehicle)
+    public int AddVehicle(string name, string color, VehicleType type)
     {
-        if(_vehicles.Contains(vehicle)) return -1;
-
+        var vehicle = new Vehicle(_nextId++, name, color, type);
         _vehicles.Add(vehicle);
-        return _vehicles.IndexOf(vehicle);
+        return vehicle.Id;
     }
 
-    public bool RemoveVehicle(int index)
+    public bool RemoveVehicle(int id)
     {
-        if(_vehicles.Count <= index) return false;
-        _vehicles.RemoveAt(index);
+        var v = _vehicles.FirstOrDefault(x => x.Id == id);
+        if (v == null) return false;
+        _vehicles.Remove(v);
         return true;
     }
 
-    public Vehicle? GetVehicle(int index)
-    {
-        if(_vehicles.Count > index) return _vehicles[index];
-        return null;
-    }
+    public Vehicle? GetVehicle(int id) => _vehicles.FirstOrDefault(x => x.Id == id);
+    public List<Vehicle> GetVehicles() => _vehicles;
 }

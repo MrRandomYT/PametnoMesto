@@ -119,3 +119,4 @@ C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto.Test\obj\Debug\ne
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto.Test\obj\Debug\net8.0\PametnoMesto.Test.pdb
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto.Test\obj\Debug\net8.0\PametnoMesto.Test.genruntimeconfig.cache
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto.Test\obj\Debug\net8.0\ref\PametnoMesto.Test.dll
+C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto.Test\bin\Debug\net8.0\PametnoMesto.staticwebassets.endpoints.json

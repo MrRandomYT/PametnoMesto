@@ -1,0 +1,42 @@
+@page
+@model VehiclesModel
+@{
+    ViewData["Title"] = "Vehicles";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Vehicles</h1>
+    <a class="btn btn-success m-2" asp-page="/AddVehicle">Add Vehicle</a>
+    <a class="btn btn-danger m-2" asp-page="/RemoveVehicle">Remove Vehicle</a>
+</div>
+
+@if (Model.Vehicles.Count == 0)
+{
+    <p>No vehicles found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Color</th>
+            <th>Available</th>
+            <th>Battery</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var v in Model.Vehicles)
+        {
+            <tr>
+                <td>@v.Name</td>
+                <td>@v.Type</td>
+                <td>@v.Color</td>
+                <td>@(v.IsAvailable ? "Yes" : "No")</td>
+                <td>@v.BatteryLevel%</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

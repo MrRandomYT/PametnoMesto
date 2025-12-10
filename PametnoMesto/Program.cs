@@ -1,3 +1,4 @@
+using PametnoMesto.Scripts;
 namespace PametnoMesto
 {
     public class Program
@@ -8,6 +9,13 @@ namespace PametnoMesto
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            
+            var handler = new DataHandler();
+            handler.AddVehicle("Tesla Model 3", "White", VehicleType.Car);
+            handler.AddVehicle("City Scooter X", "Blue", VehicleType.Scooter);
+            handler.AddVehicle("Urban Bike", "Red", VehicleType.Bike);
+            handler.AddVehicle("Smart Bus", "Yellow", VehicleType.Car);
+            builder.Services.AddSingleton(handler);
 
             var app = builder.Build();
 

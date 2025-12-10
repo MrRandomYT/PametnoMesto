@@ -1,0 +1,22 @@
+@page
+@model RemoveVehicleModel
+@{
+    ViewData["Title"] = "Remove Vehicle";
+}
+
+<div class="text-center">
+    <h1>Remove a Vehicle</h1>
+</div>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="VehicleId" class="form-label">Select Vehicle</label>
+        <select id="VehicleId" name="VehicleId" class="form-select">
+            @foreach (var v in Model.Vehicles)
+            {
+                <option value="@v.Id">@v.Name (@v.Type)</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-danger">Remove Vehicle</button>
+</form>

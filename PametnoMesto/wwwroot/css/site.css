@@ -97,3 +97,13 @@ a {
 a:hover {
     color: var(--cyan-hover);
 }
+
+.table {
+    color: var(--text-primary) !important;
+}
+.table td {
+    color: var(--text-primary) !important;
+}
+.table thead {
+    color: var(--text-secondary) !important;
+}
