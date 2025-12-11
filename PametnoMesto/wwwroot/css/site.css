@@ -22,7 +22,6 @@
 
 html {
     font-size: 14px;
-    min-height: 100vh;
 }
 
 @media (min-width: 768px) {
@@ -46,6 +45,7 @@ body {
     margin-bottom: 60px;
     background-color: var(--bg-dark);
     color: var(--text-primary);
+    min-height: 100%;
 }
 
 /* Navbar */
