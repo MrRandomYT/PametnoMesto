@@ -50,9 +50,7 @@ C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\PametnoMesto.sourcelink.json
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\staticwebassets.development.json
-C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\scopedcss\bundle\PametnoMesto.styles.css
-C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\scopedcss\projectbundle\PametnoMesto.bundle.scp.css
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\PametnoMesto.dll
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\refint\PametnoMesto.dll
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\PametnoMesto.pdb
@@ -66,3 +64,5 @@ C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\swae.build.ex.cache
+C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\MrRandomYT\Documents\GitHub\PametnoMesto\PametnoMesto\obj\Debug\net8.0\scopedcss\projectbundle\PametnoMesto.bundle.scp.css
