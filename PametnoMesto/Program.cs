@@ -1,4 +1,5 @@
 using PametnoMesto.Scripts;
+using Microsoft.AspNetCore.Authentication.Cookies;
 namespace PametnoMesto
 {
     public class Program
@@ -17,6 +18,13 @@ namespace PametnoMesto
             handler.AddVehicle("Smart Bus", "Yellow", VehicleType.Car);
             builder.Services.AddSingleton(handler);
 
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Login"; // Kam gre uporabnik, če ni prijavljen
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(20); // Koliko časa traja prijava
+                });
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -27,6 +35,8 @@ namespace PametnoMesto
             app.UseStaticFiles();
 
             app.UseRouting();
+            
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

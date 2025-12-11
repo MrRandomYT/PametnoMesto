@@ -1,0 +1,46 @@
+@page
+@model PametnoMesto.Pages.LoginModel
+@{
+    ViewData["Title"] = "Prijava";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card bg-dark text-white border-secondary shadow">
+                <div class="card-header border-secondary">
+                    <h3 class="mb-0">Prijava</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Uporabniško ime</label>
+                            <input type="text" asp-for="Username" class="form-control bg-secondary text-white border-0" required />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Geslo</label>
+                            <input type="password" asp-for="Password" class="form-control bg-secondary text-white border-0" required />
+                        </div>
+                        
+                        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                        {
+                            <div class="alert alert-danger">
+                                @Model.ErrorMessage
+                            </div>
+                        }
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Prijavi se</button>
+                    </form>
+
+                    <div class="text-center border-top border-secondary pt-3">
+                        <p class="mb-0 text-white-50">
+                            Še nimate računa? 
+                            <a asp-page="/Register" class="fw-bold text-info text-decoration-none">Registrirajte se tukaj</a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
