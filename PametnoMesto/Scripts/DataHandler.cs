@@ -2,6 +2,8 @@ namespace PametnoMesto.Scripts;
 
 public class DataHandler
 {
+    #region Vehicles
+
     private readonly List<Vehicle> _vehicles = new();
     private int _nextId = 1;
 
@@ -35,6 +37,10 @@ public class DataHandler
 
     public Vehicle? GetVehicle(int id) => _vehicles.FirstOrDefault(x => x.Id == id);
     public List<Vehicle> GetVehicles() => _vehicles;
+
+    #endregion
+    
+    #region Users
     
     // Slovar za shranjevanje uporabnikov (Uporabniško ime -> Geslo)
     // Dodamo privzetega admina, da lahko takoj testiraš
@@ -63,4 +69,6 @@ public class DataHandler
         _users.Add(username, password);
         return true; // Uspešna registracija
     }
+    
+    #endregion
 }
