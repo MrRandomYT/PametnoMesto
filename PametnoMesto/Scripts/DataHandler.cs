@@ -14,9 +14,22 @@ public class DataHandler
 
     public bool RemoveVehicle(int id)
     {
-        var v = _vehicles.FirstOrDefault(x => x.Id == id);
+        var v = GetVehicle(id);
         if (v == null) return false;
         _vehicles.Remove(v);
+        return true;
+    }
+    
+    public bool UpdateVehicle(int id, string name, string color, VehicleType type, bool isAvailable)
+    {
+        var vehicle = GetVehicle(id);
+        if (vehicle == null) return false;
+
+        vehicle.Name = name;
+        vehicle.Color = color;
+        vehicle.Type = type;
+        vehicle.IsAvailable = isAvailable;
+
         return true;
     }
 

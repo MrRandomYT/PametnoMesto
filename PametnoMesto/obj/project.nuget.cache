@@ -1,13 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "oGjlOqysvnU=",
+  "dgSpecHash": "SRaoZ38d+cY=",
   "success": true,
-  "projectFilePath": "/Users/filip/Documents/GitHub/PametnoMesto/PametnoMesto/PametnoMesto.csproj",
+  "projectFilePath": "C:\\Users\\MrRandomYT\\Documents\\GitHub\\PametnoMesto\\PametnoMesto\\PametnoMesto.csproj",
   "expectedPackageFiles": [
-    "/Users/filip/.nuget/packages/microsoft.visualstudio.azure.containers.tools.targets/1.22.1/microsoft.visualstudio.azure.containers.tools.targets.1.22.1.nupkg.sha512",
-    "/Users/filip/.nuget/packages/microsoft.netcore.app.ref/8.0.22/microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
-    "/Users/filip/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.22/microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512",
-    "/Users/filip/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.22/microsoft.netcore.app.host.osx-arm64.8.0.22.nupkg.sha512"
+    "C:\\Users\\MrRandomYT\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,0 +1,40 @@
+@page "{id:int}"
+@model EditVehicleModel
+@{
+    ViewData["Title"] = "Edit Vehicle";
+}
+
+<div class="text-center">
+    <h1>Edit Vehicle</h1>
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="VehicleId" />
+
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" id="Name" asp-for="Name" class="form-control" required />
+    </div>
+    
+    <div class="mb-3">
+        <label for="Color" class="form-label">Color</label>
+        <input type="text" id="Color" asp-for="Color" class="form-control" required />
+    </div>
+    
+    <div class="mb-3">
+        <label for="Type" class="form-label">Type</label>
+        <select id="Type" asp-for="Type" class="form-select">
+            <option value="Car">Car</option>
+            <option value="Scooter">Scooter</option>
+            <option value="Bike">Bike</option>
+        </select>
+    </div>
+    
+    <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" asp-for="IsAvailable" id="IsAvailable" />
+        <label class="form-check-label" for="IsAvailable">Available</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a class="btn btn-secondary" asp-page="/Vehicles">Cancel</a>
+</form>

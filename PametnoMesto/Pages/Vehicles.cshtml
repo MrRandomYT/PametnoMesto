@@ -6,9 +6,43 @@
 
 <div class="text-center">
     <h1 class="display-4">Vehicles</h1>
-    <a class="btn btn-success m-2" asp-page="/AddVehicle">Add Vehicle</a>
-    <a class="btn btn-danger m-2" asp-page="/RemoveVehicle">Remove Vehicle</a>
 </div>
+
+<form method="get" class="row g-3 mb-3">
+    <div class="col-md-4">
+        <input type="text"
+               class="form-control"
+               name="SearchTerm"
+               value="@Model.SearchTerm"
+               placeholder="Search by name" />
+    </div>
+
+    <div class="col-md-3">
+        <select class="form-select" name="TypeFilter">
+            <option value="">All Types</option>
+            @foreach (var type in Model.VehicleTypes)
+            {
+                <option value="@type" selected="@(type == Model.TypeFilter)">
+                    @type
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select class="form-select" name="AvailabilityFilter">
+            <option value="">All</option>
+            <option value="true" selected="@(Model.AvailabilityFilter == true)">Available</option>
+            <option value="false" selected="@(Model.AvailabilityFilter == false)">Unavailable</option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-primary w-100" type="submit">
+            Filter
+        </button>
+    </div>
+</form>
 
 @if (Model.Vehicles.Count == 0)
 {
@@ -24,6 +58,7 @@ else
             <th>Color</th>
             <th>Available</th>
             <th>Battery</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -35,8 +70,20 @@ else
                 <td>@v.Color</td>
                 <td>@(v.IsAvailable ? "Yes" : "No")</td>
                 <td>@v.BatteryLevel%</td>
+                <td>
+                    <a class="btn btn-warning btn-sm me-1" asp-page="/EditVehicle" asp-route-id="@v.Id">Edit</a>
+                    <form method="post" asp-page-handler="Remove" class="d-inline" 
+                          onsubmit="return confirm('Are you sure you want to remove this vehicle?');">
+                        <input type="hidden" name="VehicleId" value="@v.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </td>
             </tr>
         }
         </tbody>
     </table>
 }
+
+<div class="text-center">
+    <a class="btn btn-success m-2" asp-page="/AddVehicle">Add Vehicle</a>
+</div>
