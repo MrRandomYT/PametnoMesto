@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <strong>${hub.Name}</strong><br/>
                 Status: ${hub.Status}<br/>
                 Capacity: ${hub.Capacity}<br/>
+                <a href="/Vehicles?HubFilter=${hub.Id}">Open</a><br/>
                 <a href="/EditVehicleHub?id=${hub.Id}">Edit</a>
             `);
 

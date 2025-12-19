@@ -62,7 +62,7 @@ public class DataHandler
         return true;
     }
 
-    public VehicleHub? GetVehicleHub(int id) => _vehicleHubs.FirstOrDefault(h => h.Id == id);
+    public VehicleHub? GetVehicleHub(int? id) => _vehicleHubs.FirstOrDefault(h => h.Id == id);
 
     public bool UpdateVehicleHub(int id, string name, int capacity, double longitude, double latitude, string status)
     {

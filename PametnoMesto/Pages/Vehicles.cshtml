@@ -17,7 +17,19 @@
                placeholder="Search by name" />
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
+        <select class="form-select" name="HubFilter">
+            <option value="">All Locations</option>
+            @foreach (var hub in Model.VehicleHubs)
+            {
+                <option value="@hub.Id" selected="@(hub.Id == Model.HubFilter)">
+                    @hub.Name
+                </option>
+            }
+        </select>
+    </div>
+    
+    <div class="col-md-2">
         <select class="form-select" name="TypeFilter">
             <option value="">All Types</option>
             @foreach (var type in Model.VehicleTypes)
@@ -29,7 +41,7 @@
         </select>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
         <select class="form-select" name="AvailabilityFilter">
             <option value="">All</option>
             <option value="true" selected="@(Model.AvailabilityFilter == true)">Available</option>

@@ -17,9 +17,14 @@ namespace PametnoMesto.Pages
         [BindProperty(SupportsGet = true)] public string? TypeFilter { get; set; }
 
         [BindProperty(SupportsGet = true)] public bool? AvailabilityFilter { get; set; }
+        
+        [BindProperty(SupportsGet = true)] public int? HubFilter { get; set; }
 
         public List<Vehicle> Vehicles { get; private set; } = new();
         public List<string> VehicleTypes { get; set; } = new();
+        
+        public List<VehicleHub> VehicleHubs { get; set; } = new();
+        public int SelectedHubId { get; set; }
 
         public VehiclesModel(DataHandler dataHandler)
         {
@@ -28,6 +33,10 @@ namespace PametnoMesto.Pages
 
         public void OnGet()
         {
+            VehicleHubs = _dataHandler.GetVehicleHubs()
+                .Where(v => v.Capacity > 0)
+                .ToList();
+
             List<Vehicle> allVehicles = _dataHandler.GetVehicles();
             //Vehicles = allVehicles;
 
@@ -36,15 +45,18 @@ namespace PametnoMesto.Pages
                 .Distinct()
                 .OrderBy(t => t)
                 .ToList();
+            
+            var hub = _dataHandler.GetVehicleHub(HubFilter);
+            if (hub != null) allVehicles = hub.Vehicles;
 
-            if (!string.IsNullOrWhiteSpace(SearchTerm))
+            if (!string.IsNullOrEmpty(SearchTerm))
             {
                 allVehicles = allVehicles
                     .Where(v => v.Name.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
                     .ToList();
             }
             
-            if (!string.IsNullOrWhiteSpace(TypeFilter))
+            if (!string.IsNullOrEmpty(TypeFilter))
             {
                 allVehicles = allVehicles
                     .Where(v => v.Type.ToString() == TypeFilter)

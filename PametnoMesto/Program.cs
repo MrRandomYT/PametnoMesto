@@ -17,6 +17,11 @@ namespace PametnoMesto
             handler.AddVehicle("City Scooter X", "Blue", VehicleType.Scooter);
             handler.AddVehicle("Urban Bike", "Red", VehicleType.Bike);
             handler.AddVehicle("Smart Bus", "Yellow", VehicleType.Car);
+
+            int hubId = handler.AddVehicleHub("FERI", 4, 15.638064980498713, 46.55906465244069);
+            VehicleHub? hub = handler.GetVehicleHub(hubId);
+            hub?.Vehicles.Add(handler.GetVehicle(1));
+            
             builder.Services.AddSingleton(handler);
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
