@@ -1,0 +1,72 @@
+@page
+@model VehicleHubsModel
+@{
+    ViewData["Title"] = "Vehicle Hubs";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Vehicle Hubs</h1>
+</div>
+
+<div class="d-flex justify-content-end mb-3">
+    <form method="get" class="d-flex">
+        <input type="text"
+               class="form-control me-2"
+               name="SearchTerm"
+               value="@Model.SearchTerm"
+               placeholder="Search by name"
+               style="width: 250px;" />
+        <button class="btn btn-primary" type="submit">
+            Filter
+        </button>
+    </form>
+</div>
+
+
+
+@if (Model.Hubs.Count == 0)
+{
+    <p>No hubs found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Status</th>
+            <th>Vehicles</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var hub in Model.Hubs)
+        {
+            <tr>
+                <td>@hub.Name</td>
+                <td>@hub.Capacity</td>
+                <td>@hub.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture)</td>
+                <td>@hub.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture)</td>
+                <td>@hub.Status</td>
+                <td>@hub.Vehicles.Count</td>
+                <td>
+                    <a class="btn btn-warning btn-sm me-1" asp-page="/EditVehicleHub" asp-route-id="@hub.Id">Edit</a>
+
+                    <form method="post" asp-page-handler="Remove" class="d-inline" 
+                          onsubmit="return confirm('Are you sure you want to remove this hub?');">
+                        <input type="hidden" name="HubId" value="@hub.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+<div class="text-center">
+    <a class="btn btn-success m-2" asp-page="/AddVehicleHub">Add Hub</a>
+</div>

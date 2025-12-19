@@ -40,6 +40,59 @@ public class DataHandler
 
     #endregion
     
+    #region VehicleHub
+    
+    private List<VehicleHub> _vehicleHubs = new();
+    private int _nextHubId = 1;
+
+    public List<VehicleHub> GetVehicleHubs() => _vehicleHubs;
+
+    public int AddVehicleHub(string name, int capacity, double longitude, double latitude, string status = "Closed")
+    {
+        var hub = new VehicleHub(_nextHubId++, name, capacity, latitude, longitude, status);
+        _vehicleHubs.Add(hub);
+        return hub.Id;
+    }
+
+    public bool RemoveVehicleHub(int id)
+    {
+        var hub = _vehicleHubs.FirstOrDefault(h => h.Id == id);
+        if (hub == null) return false;
+        _vehicleHubs.Remove(hub);
+        return true;
+    }
+
+    public VehicleHub? GetVehicleHub(int id) => _vehicleHubs.FirstOrDefault(h => h.Id == id);
+
+    public bool UpdateVehicleHub(int id, string name, int capacity, double longitude, double latitude, string status)
+    {
+        var hub = _vehicleHubs.FirstOrDefault(h => h.Id == id);
+        if (hub == null) return false;
+
+        hub.Name = name;
+        hub.Capacity = capacity;
+        hub.Longitude = longitude;
+        hub.Latitude = latitude;
+        hub.Status = status;
+        return true;
+    }
+
+    public bool IsVehicleAssigned(int vehicleId)
+    {
+        foreach (var hub in _vehicleHubs)
+        {
+            if (hub.Vehicles.Any(v => v.Id == vehicleId))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    
+    #endregion
+    
     #region Users
     
     // Slovar za shranjevanje uporabnikov (Uporabniško ime -> Geslo)

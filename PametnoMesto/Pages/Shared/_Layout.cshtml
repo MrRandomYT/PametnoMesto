@@ -4,6 +4,7 @@
     <meta charset="utf-8" />    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PametnoMesto</title>
+    <link rel="stylesheet" href="~/lib/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
@@ -26,10 +27,16 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Vehicles">Vehicles</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/VehicleHubs">Vehicle Hubs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/VehicleHubMap">Vehicle Hubs</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item ms-auto">
-                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            @if (User.Identity is { IsAuthenticated: true })
                             {
                                 <form method="post" asp-page="/Logout" class="d-inline">
                                     <button type="submit" class="nav-link btn btn-link text-dark border-0 bg-transparent">
@@ -61,6 +68,8 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/leaflet/dist/leaflet.js"></script>
+    <script src="/js/mapLoader.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

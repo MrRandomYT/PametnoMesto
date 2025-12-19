@@ -11,4 +11,31 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\images\layers-2x.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\images\layers.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\images\marker-icon-2x.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\images\marker-icon.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\images\marker-shadow.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\leaflet-src.esm.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\leaflet-src.esm.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\leaflet-src.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\leaflet-src.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\leaflet.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\leaflet.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\leaflet\leaflet.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\images\layers-2x.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\images\layers.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\images\marker-icon-2x.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\images\marker-icon.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\images\marker-shadow.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\leaflet-src.esm.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\leaflet-src.esm.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\leaflet-src.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\leaflet-src.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\leaflet.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\leaflet.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\leaflet\leaflet.js.map" />
+  </ItemGroup>
+
 </Project>

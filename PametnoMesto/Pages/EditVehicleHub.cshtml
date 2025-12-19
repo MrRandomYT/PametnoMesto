@@ -1,0 +1,138 @@
+@page
+@model EditVehicleHubModel
+@{
+    ViewData["Title"] = "Edit Vehicle Hub";
+}
+
+<div class="text-center">
+    <h1>Edit Vehicle Hub</h1>
+</div>
+
+<form method="post" asp-page-handler="Save">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" required />
+    </div>
+
+    <input type="hidden" asp-for="Latitude" />
+    <input type="hidden" asp-for="Longitude" />
+
+    <div id="map"
+         style="height: 400px; margin-bottom: 1rem;"
+         data-lat="@Model.Latitude"
+         data-lng="@Model.Longitude">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Capacity" class="form-label"></label>
+        <input asp-for="Capacity" class="form-control" min="1" required />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label"></label>
+        <select asp-for="Status" class="form-select">
+            <option value="Closed">Closed</option>
+            <option value="Open">Open</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-page="/VehicleHubs" class="btn btn-secondary">Exit</a>
+</form>
+
+<hr />
+<h3>Vehicles at this Hub</h3>
+
+@if (Model.Vehicles.Count == 0)
+{
+    <p>No vehicles in this hub.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Color</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var v in Model.Vehicles)
+        {
+            <tr>
+                <td>@v.Name</td>
+                <td>@v.Type</td>
+                <td>@v.Color</td>
+                <td class="text-end">
+                    <form method="post"
+                          asp-page-handler="RemoveVehicle"
+                          asp-route-id="@Model.Id"
+                          asp-route-vehicleId="@v.Id"
+                          class="d-inline">
+
+                        <button type="submit"
+                                class="btn btn-sm btn-danger"
+                                onclick="return confirm('Remove this vehicle from the hub?');">
+                            Remove
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+}
+
+@{
+    bool isFull = Model.Vehicles.Count >= Model.Capacity;
+}
+
+@if (isFull)
+{
+    <div class="alert alert-warning">
+        This hub is at full capacity.
+    </div>
+}
+else if (Model.AvailableVehicles.Count == 0)
+{
+    <h4>Add Existing Vehicle to Hub</h4>
+    <p>All vehicles are already assigned to hubs.</p>
+}
+else
+{
+    <h4>Add Existing Vehicle to Hub</h4>
+    <form method="post"
+          asp-page-handler="AddExistingVehicle"
+          asp-route-id="@Model.Id"
+          class="row g-3 mb-3">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="col-md-6">
+            <select asp-for="SelectedVehicleId"
+                    class="form-select"
+                    required>
+                <option value="">Select a vehicle...</option>
+                @foreach (var v in Model.AvailableVehicles)
+                {
+                    <option value="@v.Id">
+                        @v.Name (@v.Type) - @v.Color
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <button type="submit"
+                    class="btn btn-success w-100"
+                    disabled="@isFull">
+                Add Vehicle
+            </button>
+        </div>
+    </form>
+}

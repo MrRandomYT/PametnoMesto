@@ -1,4 +1,5 @@
 using PametnoMesto.Scripts;
+using System.Globalization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 namespace PametnoMesto
 {
@@ -24,6 +25,12 @@ namespace PametnoMesto
                     options.LoginPath = "/Login"; // Kam gre uporabnik, če ni prijavljen
                     options.ExpireTimeSpan = TimeSpan.FromMinutes(20); // Koliko časa traja prijava
                 });
+
+            // Parse Error Fix
+            var cultureInfo = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
             
             var app = builder.Build();
 
