@@ -69,5 +69,14 @@ namespace PametnoMesto.Pages
 
             return RedirectToPage(); // refresh the page after removal
         }
+        public IActionResult OnPostDeploy()
+        {
+            if (VehicleId > 0)
+            {
+                // Deployment Logic...
+            }
+
+            return RedirectToPage();
+        }
     }
 }

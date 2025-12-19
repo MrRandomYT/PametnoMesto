@@ -71,10 +71,15 @@ else
                 <td>@(v.IsAvailable ? "Yes" : "No")</td>
                 <td>@v.BatteryLevel%</td>
                 <td>
-                    <a class="btn btn-warning btn-sm me-1" asp-page="/EditVehicle" asp-route-id="@v.Id">Edit</a>
-                    <form method="post" asp-page-handler="Remove" class="d-inline" 
-                          onsubmit="return confirm('Are you sure you want to remove this vehicle?');">
+                    <form method="post" asp-page-handler="Deploy" class="d-inline" 
+                          onsubmit="return confirm('NOT YET FINISHED COMING SOON...');">
                         <input type="hidden" name="VehicleId" value="@v.Id" />
+                        <button type="submit" class="btn btn-primary btn-sm">Deploy</button>
+                    </form>
+                    <a class="btn btn-warning btn-sm me-1" asp-page="/EditVehicle" asp-route-id="@v.Id">Edit</a>
+                    <form method="post" asp-page-handler="Remove" class="d-inline"
+                          onsubmit="return confirm('Are you sure you want to remove this vehicle?');">
+                        <input type="hidden" name="VehicleId" value="@v.Id"/>
                         <button type="submit" class="btn btn-danger btn-sm">Remove</button>
                     </form>
                 </td>
