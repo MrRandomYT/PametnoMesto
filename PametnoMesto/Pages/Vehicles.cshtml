@@ -83,17 +83,32 @@ else
                 <td>@(v.IsAvailable ? "Yes" : "No")</td>
                 <td>@v.BatteryLevel%</td>
                 <td>
-                    <form method="post" asp-page-handler="Deploy" class="d-inline" 
-                          onsubmit="return confirm('NOT YET FINISHED COMING SOON...');">
-                        <input type="hidden" name="VehicleId" value="@v.Id" />
-                        <button type="submit" class="btn btn-primary btn-sm">Deploy</button>
-                    </form>
-                    <a class="btn btn-warning btn-sm me-1" asp-page="/EditVehicle" asp-route-id="@v.Id">Edit</a>
-                    <form method="post" asp-page-handler="Remove" class="d-inline"
-                          onsubmit="return confirm('Are you sure you want to remove this vehicle?');">
-                        <input type="hidden" name="VehicleId" value="@v.Id"/>
-                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
-                    </form>
+                    @if (v.IsAvailable)
+                    {
+                        <form method="post" asp-page-handler="Rent" asp-route-id="@v.Id" class="d-inline">
+                            <button type="submit" class="btn btn-success btn-sm">Izposodi</button>
+                        </form>
+
+                        <a class="btn btn-warning btn-sm me-1" asp-page="/EditVehicle" asp-route-id="@v.Id">Edit</a>
+                            
+                        <form method="post" asp-page-handler="Remove" class="d-inline" onsubmit="return confirm('Are you sure you want to remove this vehicle?');">
+                            <input type="hidden" name="VehicleId" value="@v.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                    }
+                    else
+                    {
+                        @if (v.RenterUsername == User.Identity.Name)
+                        {
+                            <form method="post" asp-page-handler="Return" asp-route-id="@v.Id" class="d-inline">
+                                <button type="submit" class="btn btn-info btn-sm text-white">Vrni vozilo</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">Zaseden (@v.RenterUsername)</span>
+                        }
+                    }
                 </td>
             </tr>
         }

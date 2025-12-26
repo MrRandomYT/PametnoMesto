@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using PametnoMesto.Scripts
+@inject DataHandler DataHandler
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />    
@@ -35,9 +38,23 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item ms-auto">
-                            @if (User.Identity is { IsAuthenticated: true })
+                        <li class="nav-item ms-auto d-flex align-items-center">
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
                             {
+                                // 1. Poiščemo prijavljenega uporabnika
+                                var currentUser = DataHandler.GetPlayerByUsername(User.Identity.Name);
+                            
+                                // 2. Če uporabnik obstaja, izpišemo stanje denarnice
+                                if (currentUser != null)
+                                {
+                                    // Uporabljam 'text-dark', ker imaš tako nastavljeno v svoji kodi.
+                                    // Če bo slabo vidno na temnem ozadju, spremeni 'text-dark' v 'text-white'.
+                                    <span class="nav-link text-dark fw-bold me-2">
+                                        Denarnica: @currentUser.Balance.ToString("C")
+                                    </span>
+                                }
+
+                                // 3. Gumb za odjavo (ostane enak kot prej)
                                 <form method="post" asp-page="/Logout" class="d-inline">
                                     <button type="submit" class="nav-link btn btn-link text-dark border-0 bg-transparent">
                                         Logout (@User.Identity.Name)

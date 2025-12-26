@@ -72,22 +72,17 @@ namespace PametnoMesto.Pages
 
             Vehicles = allVehicles;
         }
-        public IActionResult OnPostRemove()
+        public IActionResult OnPostRent(int id)
         {
-            if (VehicleId > 0)
-            {
-                _dataHandler.RemoveVehicle(VehicleId);
-            }
-
-            return RedirectToPage(); // refresh the page after removal
+            var username = User.Identity.Name;
+            _dataHandler.RentVehicle(id, username);
+            return RedirectToPage();
         }
-        public IActionResult OnPostDeploy()
-        {
-            if (VehicleId > 0)
-            {
-                // Deployment Logic...
-            }
 
+        public IActionResult OnPostReturn(int id)
+        {
+            string message = _dataHandler.ReturnVehicle(id);
+            TempData["Message"] = message; // Za izpis cene
             return RedirectToPage();
         }
     }

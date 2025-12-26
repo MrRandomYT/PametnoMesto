@@ -38,6 +38,55 @@ public class DataHandler
     public Vehicle? GetVehicle(int id) => _vehicles.FirstOrDefault(x => x.Id == id);
     public List<Vehicle> GetVehicles() => _vehicles;
 
+    public bool RentVehicle(int vehicleId, string username)
+    {
+        var vehicle = GetVehicle(vehicleId);
+        // POPRAVEK: Uporabljamo IsAvailable
+        if (vehicle == null || !vehicle.IsAvailable) return false;
+
+        // POPRAVEK: Nastavimo IsAvailable na false
+        vehicle.IsAvailable = false;
+        vehicle.RenterUsername = username;
+        vehicle.RentStartTime = DateTime.Now;
+
+        return true;
+    }
+
+    public string ReturnVehicle(int vehicleId)
+    {
+        var vehicle = GetVehicle(vehicleId);
+        // POPRAVEK: Preverimo IsAvailable
+        if (vehicle == null || vehicle.IsAvailable) return "Napaka: Vozilo ni v najemu.";
+
+        var endTime = DateTime.Now;
+        var duration = endTime - vehicle.RentStartTime;
+        double totalMinutes = duration.Value.TotalMinutes;
+
+        decimal pricePerMinute = 0;
+        switch (vehicle.Type)
+        {
+            case VehicleType.Bike: pricePerMinute = 0.05m; break;
+            case VehicleType.Scooter: pricePerMinute = 0.20m; break;
+            case VehicleType.Car: pricePerMinute = 0.50m; break;
+        }
+
+        decimal cost = (decimal)totalMinutes * pricePerMinute;
+        if (cost < 0.10m) cost = 0.10m; 
+
+        var player = GetPlayerByUsername(vehicle.RenterUsername);
+        if (player != null)
+        {
+            player.Balance -= cost;
+        }
+
+        // POPRAVEK: Sprostimo vozilo (IsAvailable = true)
+        vehicle.IsAvailable = true;
+        vehicle.RenterUsername = null;
+        vehicle.RentStartTime = null;
+
+        return $"Vožnja končana! Čas: {Math.Round(totalMinutes, 1)} min. Cena: {cost.ToString("C")}";
+    }
+    
     #endregion
     
     #region VehicleHub
@@ -95,33 +144,50 @@ public class DataHandler
     
     #region Users
     
-    // Slovar za shranjevanje uporabnikov (Uporabniško ime -> Geslo)
-    // Dodamo privzetega admina, da lahko takoj testiraš
-    private Dictionary<string, string> _users = new Dictionary<string, string>()
-    {
-        { "admin", "geslo123" }
-    };
+    // Namesto Dictionary zdaj uporabljamo List<Player>
+    private List<Player> _players = new List<Player>();
+    private int _nextPlayerId = 1;
 
-    // Preveri, ali so podatki za prijavo pravilni
+    public DataHandler()
+    {
+        // V konstruktorju dodamo admina ročno
+        // "hardcodan" admin: ID 1, ime "admin", geslo "geslo123"
+        _players.Add(new Player(_nextPlayerId++, "admin", "geslo123"));
+    }
+
+    // Preveri prijavo (išče po listi igralcev)
     public bool ValidateUser(string username, string password)
     {
-        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password)) 
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             return false;
 
-        return _users.ContainsKey(username) && _users[username] == password;
+        // Poišči igralca, ki ima isto ime IN isto geslo
+        var player = _players.FirstOrDefault(p => p.Username == username && p.Password == password);
+            
+        // Če smo ga našli (ni null), je prijava uspešna
+        return player != null;
     }
 
-    // Registrira novega uporabnika
+    // Registracija (doda novega igralca v listo)
     public bool RegisterUser(string username, string password)
     {
-        if (_users.ContainsKey(username))
+        // Najprej preverimo, če uporabnik s tem imenom že obstaja
+        if (_players.Any(p => p.Username == username))
         {
-            return false; // Uporabnik že obstaja
+            return false; // Ime je zasedeno
         }
+
+        // Ustvarimo novega igralca in ga dodamo v listo
+        var newPlayer = new Player(_nextPlayerId++, username, password);
+        _players.Add(newPlayer);
             
-        _users.Add(username, password);
-        return true; // Uspešna registracija
+        return true;
     }
     
+    // Metoda, ki vrne celotnega Playerja glede na uporabniško ime
+    public Player? GetPlayerByUsername(string username)
+    {
+        return _players.FirstOrDefault(p => p.Username == username);
+    }
     #endregion
 }

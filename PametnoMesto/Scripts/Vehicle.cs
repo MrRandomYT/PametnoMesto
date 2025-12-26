@@ -15,6 +15,8 @@ namespace PametnoMesto.Scripts
         public VehicleType Type { get; set; }
         public bool IsAvailable { get; set; } = false; 
         public int BatteryLevel { get; set; } = 100; // only relevant for electric vehicles
+        public string? RenterUsername { get; set; } // Kdo si je izposodil
+        public DateTime? RentStartTime { get; set; } // Kdaj se je začela vožnja
 
         public Vehicle(int id, string name, string color, VehicleType type)
         {
@@ -22,6 +24,7 @@ namespace PametnoMesto.Scripts
             Name = name;
             Color = color;
             Type = type;
+            IsAvailable = true; // Na začetku je prosto
         }
     }
 }
